@@ -1,20 +1,66 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useContext, useEffect, useState } from 'react';
+import { View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { AppStack, AuthStack } from './src/presentations/navigators/routes';
+import { Provider as AuthProvider, Context as AuthContext } from './src/presentations/context/AuthContext';
+import { Provider as CartProvider } from './src/presentations/context/CartContext';
+import { Provider as OrdersProvider } from './src/presentations/context/OrdersContext';
 
-export default function App() {
+const compose = (providers) =>
+  providers.reduce((Prev, Curr) => ({ children }) => (
+    <Prev>
+      <Curr>{children}</Curr>
+    </Prev>
+  ));
+
+const Provider = compose([
+    AuthProvider,
+    CartProvider,
+    OrdersProvider
+]);
+
+const Router = () => {
+  const [loading, setLoading] = useState(false)
+  const { state: { user }, autoLogin } = useContext(AuthContext);
+
+  useEffect(() => {
+    const autoAuth = async () => {
+      setLoading(true)
+      await autoLogin()
+      setLoading(false)
+    }
+    
+    autoAuth()
+  }, [])
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    loading ? 
+    <View/> : 
+    <NavigationContainer>
+      {user ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  )
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => {
+  return (
+    <Provider>
+      <Router />
+      {/* <AuthContext.Consumer>
+        {({state: {token}}) => {
+          return (
+            <NavigationContainer>
+              {token ? <AppStack /> : <AuthStack />}
+            </NavigationContainer> 
+          )
+        }}
+      </AuthContext.Consumer> */}
+
+      {/* <NavigationContainer>
+        <MainStack/>
+      </NavigationContainer> */}
+    </Provider>
+  );
+};
+
+export default App;
