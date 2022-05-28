@@ -25,10 +25,8 @@ export default () => {
   }
   
   useEffect(() => {
-    if (shouldRefresh) {
-      fetchOrdersApi();
-    }
-  }, [shouldRefresh])
+    fetchOrdersApi();
+  }, [])
 
   return [orders, loading, error, fetchOrdersApi];
 }

@@ -3,6 +3,7 @@ import { StyleSheet, Image, Text, View } from "react-native";
 import Colors from "../../themes/Colors";
 import Metrics from "../../themes/Metrics";
 import IconButton from "../IconButton/IconButton";
+import i18n from "i18n-js";
 
 const Cart = ({item: {productImage, quantity, productPrice, productName, totalPrice}, onClick, deleteable = false}) => {
   return (

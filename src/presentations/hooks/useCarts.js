@@ -4,6 +4,7 @@ import { Context as OrdersContext } from "../context/OrdersContext";
 import { useNavigation } from "@react-navigation/native";
 import { addOrder as addOrderFromApi } from "../../data/apis/firebase/firebaseDataProvider";
 import useApi from "./useApi";
+import { CommonActions } from '@react-navigation/native';
 
 export default () => {
   const [loading, setLoading] = useState(false);
@@ -20,8 +21,23 @@ export default () => {
       await callApi({cartItems: carts});
       setLoading(false);
       clearCart()
-      updateOrderRefresh(true)
-      navigation.navigate("Orders");
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 1,
+          routes: [
+            { 
+              name: 'Main',
+              state: {
+                routes: [
+                  {
+                    name: "Orders",
+                  }
+                ]
+              }
+            },
+          ],
+        })
+      );
     } catch (err) {
       setLoading(false);
       setError(err.message);

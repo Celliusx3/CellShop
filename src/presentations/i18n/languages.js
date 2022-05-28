@@ -3,6 +3,8 @@ const en = {
   orders: 'Orders',
   settings: 'Settings',
   submitOrder: 'Submit Order',
+  cart: 'Cart',
+  orderDetails: 'Order Details',
   addToCart: 'Add to Cart',
   email: 'Email',
   emailPlaceHolder: 'Please input your email...',
@@ -13,6 +15,6 @@ const en = {
   registerPromo: 'Does not have an account? Register instead.',
   loginPromo: 'Already have an account? Sign in instead.',
   logout: 'Logout',
-  total: 'Total'
+  total: 'Total',
 };
 export { en };
