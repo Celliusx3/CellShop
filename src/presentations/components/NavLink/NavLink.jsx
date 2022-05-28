@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, TouchableOpacity} from "react-native";
+import Metrics from "../../themes/Metrics";
 
 const NavLink = ({children, onClick, style}) => {
   return (
@@ -12,8 +13,8 @@ const NavLink = ({children, onClick, style}) => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    alignItems:"center"
+    flexDirection: Metrics.flexDirection.row,
+    alignItems: Metrics.alignItems.center
   },
 })
 

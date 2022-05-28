@@ -7,7 +7,7 @@ const TextButton = ({text, disabled, onClick, style}) => {
   return (
     <TouchableHighlight 
       disabled={disabled}
-      style={{...styles.container, ...style, ...{backgroundColor: "#000"}}}
+      style={{...styles.container, ...style}}
       underlayColor= {Colors.textButton.focused}
       onPress={onClick}>
       <View style={{...styles.button, ...{backgroundColor: disabled ? Colors.textButton.disabled: Colors.textButton.default}}}>
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     padding: Metrics.margin.medium
   },
   text: {
-    textAlign: "center",
+    textAlign: Metrics.textAlignment.center,
     color: Colors.textButton.text
   }
 })

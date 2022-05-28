@@ -8,6 +8,7 @@ import NavLink from "../../components/NavLink/NavLink";
 import { useNavigation } from "@react-navigation/core";
 import Colors from "../../themes/Colors";
 import useSignUp from "../../hooks/useSignUp";
+import i18n from "i18n-js";
 
 const SignUpScreen = () => {
   const [loading, error, signUpApi] = useSignUp();
@@ -27,10 +28,10 @@ const SignUpScreen = () => {
 	return(
     <SafeAreaView style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Sign Up</Text>
+        <Text style={styles.title}>{i18n.t('signUp')}</Text>
         <TextInput
-          title={"Email"}
-          placeHolder= {"Please input your email..."}
+          title={i18n.t('email')}
+          placeHolder= {i18n.t('emailPlaceHolder')}
           text = {email}
           onChangeText = {setEmail}
           autoCapitalize = {"none"}
@@ -39,8 +40,8 @@ const SignUpScreen = () => {
           style = {styles.emailInput}
         />
         <TextInput
-          title={"Password"}
-          placeHolder= {"Please input your password..."}
+          title={i18n.t('password')}
+          placeHolder= {i18n.t('passwordPlaceHolder')}
           text = {password}
           onChangeText = {setPassword}
           autoCapitalize = {"none"}
@@ -54,7 +55,7 @@ const SignUpScreen = () => {
         <TextButton 
           style={styles.button}
           disabled = {loading || !email || !password}
-          text= {"Sign up"}
+          text= {i18n.t('signUp')}
           onClick={onSignUpClicked}/>
         {
           loading ?
@@ -66,7 +67,7 @@ const SignUpScreen = () => {
         }
         
         <NavLink style={styles.navLink} onClick={onNavLinkClicked}>
-          <Text>Already have an account? Sign in instead.</Text>
+          <Text>{i18n.t('loginPromo')}</Text>
         </NavLink>
 
       </ScrollView>

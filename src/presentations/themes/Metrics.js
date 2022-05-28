@@ -74,6 +74,13 @@ export default {
   },
   alignItems: {
     baseline: "baseline",
-    flexEnd: "flex-end"
+    flexEnd: "flex-end",
+    center: "center"
+  },
+  justifyContent: {
+    spaceBetween: "space-between"
+  },
+  textAlignment: {
+    center: "center"
   }
 }

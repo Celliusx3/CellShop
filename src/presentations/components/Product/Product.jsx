@@ -3,6 +3,7 @@ import { StyleSheet, Image, Text, TouchableOpacity, ViewStyle, View } from "reac
 import Colors from "../../themes/Colors";
 import Metrics from "../../themes/Metrics";
 import TextButton from "../TextButton/TextButton";
+import i18n from "i18n-js";
 
 const Product = ({item:{price, name, imageUrl}, onClick}) => {
   return (
@@ -25,7 +26,7 @@ const Product = ({item:{price, name, imageUrl}, onClick}) => {
       </Text>
       <TextButton 
         style={styles.button}
-        text= {"Add to cart"}
+        text= {i18n.t('addToCart')}
         onClick={onClick}/>
     </View>
   )

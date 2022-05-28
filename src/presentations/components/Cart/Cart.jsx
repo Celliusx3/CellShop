@@ -50,11 +50,9 @@ const Cart = ({item: {productImage, quantity, productPrice, productName, totalPr
         <Text 
           numberOfLines={1}
           style={styles.total}>
-          Total: $ {Math.round(totalPrice.toFixed(2) * 100) / 100}
+          {`${i18n.t('total')}: $ ${Math.round(totalPrice.toFixed(2) * 100) / 100}` }
         </Text>
       </View>
-     
-
     </View>
   )
 };
@@ -91,7 +89,7 @@ const styles = StyleSheet.create({
     flex: Metrics.flex.flex1, 
     flexDirection: Metrics.flexDirection.row,
     marginEnd: Metrics.margin.tiny,
-    justifyContent: "space-between"
+    justifyContent: Metrics.justifyContent.spaceBetween
   },
 	title: {
     fontSize: Metrics.font.extraRegular,

@@ -5,6 +5,7 @@ import Colors from "../../themes/Colors";
 import Metrics from "../../themes/Metrics";
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Context as AuthContext } from "../../context/AuthContext";
+import i18n from "i18n-js";
 
 const SettingsScreen = () => {
   const { signOut } = useContext(AuthContext);
@@ -18,7 +19,7 @@ const SettingsScreen = () => {
             size={Metrics.icons.medium} 
             color={Colors.errorText.text} 
             style={{marginEnd: Metrics.margin.small}}/>
-          <Text style={styles.logout}>Logout</Text>
+          <Text style={styles.logout}>{i18n.t('logout')}</Text>
         </NavLink>
       </View>
     </View>

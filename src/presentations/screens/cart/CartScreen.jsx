@@ -5,6 +5,7 @@ import Metrics from "../../themes/Metrics";
 import TextButton from "../../components/TextButton/TextButton";
 import Colors from "../../themes/Colors";
 import useCarts from "../../hooks/useCarts";
+import i18n from "i18n-js";
 
 const CartScreen = () => {
   const [carts, totalAmount, error, loading, addOrderApi, removeItemsApi]= useCarts()
@@ -28,7 +29,7 @@ const CartScreen = () => {
         <Text 
           numberOfLines={2}
           style={styles.total}>
-          Total: $ {Math.round(totalAmount.toFixed(2) * 100) / 100}
+          {`${i18n.t('total')}: $ ${Math.round(totalAmount.toFixed(2) * 100) / 100}` }
         </Text>
         { loading ?
           <ActivityIndicator 
@@ -38,7 +39,7 @@ const CartScreen = () => {
           <TextButton 
             style={styles.button}
             disabled = {carts === null || carts.length === 0}
-            text= {"Submit Order"}
+            text= {i18n.t('submitOrder')}
             onClick={addOrderApi}/>
         }
         
@@ -50,6 +51,10 @@ const CartScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: Metrics.flex.flex1, 
+    flexDirection: Metrics.flexDirection.column
+  },
   listContent: {
     paddingVertical: Metrics.margin.small
   },

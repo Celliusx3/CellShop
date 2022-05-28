@@ -5,6 +5,13 @@ import { AppStack, AuthStack } from './src/presentations/navigators/routes';
 import { Provider as AuthProvider, Context as AuthContext } from './src/presentations/context/AuthContext';
 import { Provider as CartProvider } from './src/presentations/context/CartContext';
 import { Provider as OrdersProvider } from './src/presentations/context/OrdersContext';
+import * as Localization from "expo-localization";
+import i18n from "i18n-js";
+import { en } from "./src/presentations/i18n/languages";
+
+i18n.fallbacks = true;
+i18n.translations = { en };
+i18n.locale = Localization.locale;
 
 const compose = (providers) =>
   providers.reduce((Prev, Curr) => ({ children }) => (
@@ -46,19 +53,6 @@ const App = () => {
   return (
     <Provider>
       <Router />
-      {/* <AuthContext.Consumer>
-        {({state: {token}}) => {
-          return (
-            <NavigationContainer>
-              {token ? <AppStack /> : <AuthStack />}
-            </NavigationContainer> 
-          )
-        }}
-      </AuthContext.Consumer> */}
-
-      {/* <NavigationContainer>
-        <MainStack/>
-      </NavigationContainer> */}
     </Provider>
   );
 };
