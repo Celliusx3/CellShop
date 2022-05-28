@@ -23,7 +23,6 @@ export default () => {
       updateOrderRefresh(true)
       navigation.navigate("Orders");
     } catch (err) {
-      console.log(err)
       setLoading(false);
       setError(err.message);
     }

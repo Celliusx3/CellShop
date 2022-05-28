@@ -1,4 +1,4 @@
-import { signIn as authSignIn, signUp as authSignUp } from "../../data/apis/firebaseAuth/firebaseAuthDataProvider";
+import { signIn as authSignIn, signUp as authSignUp, refreshUser as authRefreshUser } from "../../data/apis/firebaseAuth/firebaseAuthDataProvider";
 import * as SecureStore from 'expo-secure-store';
 import createDataContext from "./createDataContext";
 
@@ -28,6 +28,19 @@ const signUp = (dispatch) => async ({email, password}) => {
   }
 }
 
+const refreshUser = (dispatch) => async () => {
+  try {
+    const user = await SecureStore.getItemAsync(storageUser);
+    const authData = JSON.parse(user);
+    const {refreshToken} = authData
+    const response = await authRefreshUser({ refreshToken });
+    await SecureStore.setItemAsync(storageUser, JSON.stringify(response));
+    dispatch({ type: actionAuthenticate, payload: response });
+  } catch (err) {
+    dispatch({ type: actionAuthenticate, payload: null });
+  }
+}
+
 const signIn = (dispatch) => async ({email, password}) => {
   try {
     const response = await authSignIn({email, password});
@@ -45,16 +58,17 @@ const signOut = (dispatch) => async () => {
 
 const autoLogin = (dispatch) => async () => {
   try {
-    const response = await SecureStore.getItemAsync(storageUser);
+    const response = await SecureStore.getItemAsync(storageUser);  
     const authData = JSON.parse(response);
     dispatch({ type: actionAuthenticate, payload: authData });
   } catch (err) {
+    console.log(err)
     dispatch({ type: actionAuthenticate, payload: null });
   }
 }
 
 export const { Provider, Context } = createDataContext(
   authReducer, 
-  { signIn, signOut, signUp, autoLogin },
+  { signIn, signOut, signUp, autoLogin, refreshUser },
   { user: null }
 )
