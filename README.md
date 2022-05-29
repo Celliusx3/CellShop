@@ -14,6 +14,7 @@ It is written in Javascript with unit tests available.
 - Expo
 - i18n
 - Jest
+- Dot env
 - React native testing library
 
 ## Installation
