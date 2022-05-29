@@ -4,7 +4,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AppStack, AuthStack } from './src/presentations/navigators/routes';
 import { Provider as AuthProvider, Context as AuthContext } from './src/presentations/context/AuthContext';
 import { Provider as CartProvider } from './src/presentations/context/CartContext';
-import { Provider as OrdersProvider } from './src/presentations/context/OrdersContext';
 import * as Localization from "expo-localization";
 import i18n from "i18n-js";
 import { en } from "./src/presentations/i18n/languages";
@@ -23,7 +22,6 @@ const compose = (providers) =>
 const Provider = compose([
     AuthProvider,
     CartProvider,
-    OrdersProvider
 ]);
 
 const Router = () => {

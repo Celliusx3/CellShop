@@ -7,7 +7,6 @@ export default ({ api }) => {
   const { state: { user }, signOut, refreshUser } = useContext(AuthContext);
   const ref = useRef({}).current;
   ref.value = user;
-  
   const callApi = async (data, handleNotAuthorised = true) => {
     try {
       const  {authToken, userId} = ref.value

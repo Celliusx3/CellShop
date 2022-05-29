@@ -62,7 +62,6 @@ const autoLogin = (dispatch) => async () => {
     const authData = JSON.parse(response);
     dispatch({ type: actionAuthenticate, payload: authData });
   } catch (err) {
-    console.log(err)
     dispatch({ type: actionAuthenticate, payload: null });
   }
 }
